@@ -32,3 +32,10 @@ blocks:
         - name: Check format
           commands:
             - echo "Checking format..."
+promotions:
+  - name: Staging
+    pipeline_file: pipeline_2.yml
+    auto_promote:
+      when: branch = 'setup-semaphore' AND result = 'passed'
+  - name: Production
+    pipeline_file: pipeline_3.yml
