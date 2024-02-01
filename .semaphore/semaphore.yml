@@ -22,6 +22,7 @@ blocks:
             - echo "Starting unit tests..."
             - echo $ACCESS_KEY
             - echo $RAILS_ENV
+            - echo $MY_APP_ID
         - name: Integration tests
           commands:
             - echo "Starting Integration tests..."
@@ -31,6 +32,8 @@ blocks:
           value: test
         - name: ACCESS_KEY
           value: abc1239999999999999
+        - name: MY_APP_ID
+      value: qwe000
   - name: Linters
     task:
       prologue:
