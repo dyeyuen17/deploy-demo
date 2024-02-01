@@ -1,0 +1,53 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Build
+    task:
+      jobs:
+        - name: initiate build
+          commands:
+            - checkout
+  - name: Tests
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: Unit tests
+          commands:
+            - echo "Starting unit tests..."
+            - echo $ACCESS_KEY
+            - echo $RAILS_ENV
+        - name: Integration tests
+          commands:
+            - echo "Starting Integration tests..."
+            - echo $ACCESS_KEY
+      env_vars:
+        - name: RAILS_ENV
+          value: test
+        - name: ACCESS_KEY
+          value: abc1239999999999999
+  - name: Linters
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: Check format
+          commands:
+            - echo "Checking format..."
+            - echo $SEMAPHORE
+            - echo $SEMAPHORE_PROJECT_NAME
+            - echo $SEMAPHORE_PROJECT_ID
+            - echo $SEMAPHORE_ORGANIZATION_URL
+promotions:
+  - name: Staging
+    pipeline_file: pipeline_2.yml
+    auto_promote:
+      when: branch = 'setup-semaphore' AND result = 'passed'
+  - name: Production
+    pipeline_file: pipeline_3.yml

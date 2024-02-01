@@ -1,0 +1,16 @@
+version: v1.0
+name: Pipeline 2
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Staging deployment
+    task:
+      jobs:
+        - name: Deploy to staging
+          commands:
+            - echo "Deploying to Staging..."
+            - echo $API_KEY
+      secrets:
+        - name: Third party API key
