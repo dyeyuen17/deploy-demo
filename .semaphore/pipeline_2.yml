@@ -11,3 +11,6 @@ blocks:
         - name: Deploy to staging
           commands:
             - echo "Deploying to Staging..."
+            - echo $API_KEY
+      secrets:
+        - name: Third party API key
