@@ -20,14 +20,17 @@ blocks:
         - name: Unit tests
           commands:
             - echo "Starting unit tests..."
+            - echo $ACCESS_KEY
+            - echo $RAILS_ENV
         - name: Integration tests
           commands:
             - echo "Starting Integration tests..."
+            - echo $ACCESS_KEY
       env_vars:
         - name: RAILS_ENV
           value: test
         - name: ACCESS_KEY
-          value: abc123
+          value: abc1239999999999999
   - name: Linters
     task:
       prologue:
