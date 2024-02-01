@@ -23,3 +23,12 @@ blocks:
         - name: Integration tests
           commands:
             - echo "Starting Integration tests..."
+  - name: Linters
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: Check format
+          commands:
+            - echo "Checking format..."
